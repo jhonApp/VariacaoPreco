@@ -2,9 +2,11 @@ pipeline {
     agent any
 
     stages {
-        stage('Build') {
+        stage('Build Image') {
             steps {
-                echo 'Iniciando a pipeline'
+                script {
+                    dockerapp = docker.build('jhon/variacaopreco.api', '-f ./src/VariacaoPreco.API/Dockerfile ./src')
+                }
             }
         }
         stage('Test') {
