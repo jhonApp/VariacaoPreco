@@ -7,6 +7,7 @@ pipeline {
                 script {
                     echo 'Iniciando a construção da imagem Docker...'
                     dockerapp = docker.build('jhon/variacaopreco.api', '-f ./src/VariacaoPreco.API/Dockerfile ./src/VariacaoPreco.API')
+                    sh "echo ${dockerapp}"
                 }
             }
         }
