@@ -9,14 +9,12 @@ pipeline {
         }
         stage('Test') {
             steps {
-                // Comandos para executar testes
-                // Por exemplo: sh 'npm test' ou 'dotnet test'
+                echo 'Iniciando os testes'
             }
         }
         stage('Deploy') {
             steps {
-                // Comandos para implantar o projeto
-                // Por exemplo: sh 'npm deploy' ou 'docker push'
+                echo 'Iniciando o deploy'
             }
         }
     }
