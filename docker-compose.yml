@@ -7,10 +7,22 @@ services:
       context: .
       dockerfile: VariacaoPreco.API/Dockerfile
 
+  variacaopreco.data:
+    image: ${DOCKER_REGISTRY-}variacaoprecodata
+    build:
+      context: .
+      dockerfile: VariacaoPreco.Data/Dockerfile
+
+  variacaopreco.core:
+    image: ${DOCKER_REGISTRY-}variacaoprecocore
+    build:
+      context: .
+      dockerfile: VariacaoPreco.Core/Dockerfile
+
   jenkins:
     image: jenkins/jenkins:lts
     ports:
-      - "8083:8080"
+      - "8084:8080"
       - "50000:50000"
     volumes:
       - jenkins_data:/var/jenkins_home
