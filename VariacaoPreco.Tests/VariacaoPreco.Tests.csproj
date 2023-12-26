@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.InMemory" Version="6.0.25" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
@@ -18,5 +19,6 @@
 
   <ItemGroup>
     <ProjectReference Include="..\VariacaoPreco.Core\VariacaoPreco.Core.csproj" />
+    <ProjectReference Include="..\VariacaoPreco.Data\VariacaoPreco.Data.csproj" />
   </ItemGroup>
 </Project>
