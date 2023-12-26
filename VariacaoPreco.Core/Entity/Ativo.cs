@@ -8,6 +8,12 @@ namespace VariacaoPreco.Core.Entity
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID_ativo { get; set; }
-        [MaxLength(100)] public string nome { get; set; }
+        public int Dia { get; set; }
+        public DateTime Data_stamp { get; set; }
+        public double? Valor_baixa { get; set; }
+        public double? Valor_alta { get; set; }
+        public double? Valor_fechamento { get; set; }
+        public double? Valor_abertura { get; set; }
+        public int? Volume { get; set; }
     }
 }

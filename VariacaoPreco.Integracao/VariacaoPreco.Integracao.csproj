@@ -4,13 +4,17 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <UserSecretsId>dotnet-VariacaoPreco.Core-2C4E08A1-6FE0-4605-A1B0-D1E581786C64</UserSecretsId>
+    <UserSecretsId>dotnet-VariacaoPreco.Integracao-8196C042-2A2D-444C-8B5C-AD607655E15D</UserSecretsId>
     <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="6.0.0" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.14.0" />
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\VariacaoPreco.Core\VariacaoPreco.Core.csproj" />
+    <ProjectReference Include="..\VariacaoPreco.Data\VariacaoPreco.Data.csproj" />
   </ItemGroup>
 </Project>

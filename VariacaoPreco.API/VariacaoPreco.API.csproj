@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\VariacaoPreco.Core\VariacaoPreco.Core.csproj" />
+    <ProjectReference Include="..\VariacaoPreco.Data\VariacaoPreco.Data.csproj" />
   </ItemGroup>
 
 </Project>
