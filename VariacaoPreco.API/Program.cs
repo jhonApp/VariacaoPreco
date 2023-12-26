@@ -16,7 +16,9 @@ builder.Services.AddDbContext<AppDbContext>(options =>
     options.UseSqlServer(configuration.GetConnectionString("VariacaoAWS")));
 
 // Adiciona AtivoService como um serviço de escopo
+builder.Services.AddScoped<DbContext>();
 builder.Services.AddScoped<AtivoService>();
+builder.Services.AddScoped<IntegracaoService>();
 builder.Services.AddScoped<IAtivo, AtivoRepository>();
 
 builder.Services.AddControllers();

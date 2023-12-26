@@ -8,6 +8,7 @@ namespace VariacaoPreco.Core.Entity
     {
         [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int ID_ativo { get; set; }
+        public string Simbolo { get; set; }
         public int Dia { get; set; }
         public DateTime Data_stamp { get; set; }
         public double? Valor_baixa { get; set; }
