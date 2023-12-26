@@ -22,7 +22,7 @@ namespace ConsoleApp
                         options.UseSqlServer(configuration.GetConnectionString("VariacaoAWS"));
                     });
 
-                    services.AddTransient<AtivoService>();
+                    services.AddTransient<AtivoIntegracaoService>();
                     services.AddScoped<IAtivo, AtivoRepository>();
                 })
                 .Build();
@@ -30,11 +30,11 @@ namespace ConsoleApp
             using (var scope = host.Services.CreateScope())
             {
                 var serviceProvider = scope.ServiceProvider;
-                var ativoService = serviceProvider.GetRequiredService<AtivoService>();
+                var ativoService = serviceProvider.GetRequiredService<AtivoIntegracaoService>();
 
                 try
                 {
-                    await ativoService.ObterPrecoAtivo();
+                    await ativoService.ObterPrecoAtivo("teste");
                 }
                 catch (Exception ex)
                 {

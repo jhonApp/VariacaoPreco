@@ -17,9 +17,13 @@ namespace VariacaoPreco.Data.Repository
             _variacaos = dbContext.Set<Variacao>();
         }
 
-        public void Add(Ativo ativo)
+        public void Add(List<Ativo> ativos)
         {
-            _ativos.Add(ativo);
+            foreach (var ativo in ativos)
+            {
+                _dbContext.Ativos.Add(ativo);
+            }
+
             _dbContext.SaveChanges();
         }
 
@@ -30,9 +34,9 @@ namespace VariacaoPreco.Data.Repository
                 .ToList();
         }
 
-        public Ativo GetAtivoByDate(DateTime stamp)
+        public Ativo GetAtivoByDateAndSimbolo(DateTime stamp, string simbolo)
         {
-            return _ativos.FirstOrDefault(e => e.Data_stamp.Date == stamp.Date);
+            return _ativos.FirstOrDefault(e => e.Data_stamp.Date == stamp.Date && e.Simbolo == simbolo);
         }
 
         public int GetAtivoID(Ativo ativo)
@@ -50,5 +54,17 @@ namespace VariacaoPreco.Data.Repository
 
             return ativos;
         }
+
+        public List<Ativo> ObterAtivosUltimos30PregoesBySimbolo(string simbolo)
+        {
+            var ativos = _dbContext.Ativos
+                .Where(e => e.Simbolo == simbolo)
+                .OrderByDescending(a => a.Data_stamp)  // Ordenando os ativos pela data em ordem decrescente
+                .Take(30)  // Limitando o resultado aos últimos 30 registros
+                .ToList();
+
+            return ativos;
+        }
+
     }
 }

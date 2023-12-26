@@ -10,19 +10,36 @@ namespace VariacaoPreco.API.Controllers
     public class AtivoController : ControllerBase
     {
         private readonly AtivoService _ativoService;
+        private readonly IntegracaoService _integracaoService;
 
 
-        public AtivoController(AtivoService ativoService)
+        public AtivoController(AtivoService ativoService, IntegracaoService integracaoService)
         {
             _ativoService = ativoService;
+            _integracaoService = integracaoService;
         }
 
-        [HttpGet("precos-ativos")]
-        public ActionResult ObterVariacaoPreco()
+        [HttpGet("consultar-ativos-simbolo")]
+        public async Task<ActionResult> ConsultarAtivos(string simbolo)
         {
             try
             {
-                var variacao = _ativoService.CalcularVariacaoPreco();
+                var ativos = await _integracaoService.ObterPrecoAtivo(simbolo);
+                return Ok(ativos);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erro ao consultar os ativos: {ex.Message}");
+            }
+        }
+
+
+        [HttpGet("consultar-precos-ativos")]
+        public ActionResult ObterVariacaoPreco(string simbolo)
+        {
+            try
+            {
+                var variacao = _ativoService.CalcularVariacoesBySimbolo(simbolo);
                 return Ok(variacao);
 
             }

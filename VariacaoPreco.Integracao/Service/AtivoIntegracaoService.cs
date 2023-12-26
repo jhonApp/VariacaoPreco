@@ -1,28 +1,29 @@
 ﻿using Newtonsoft.Json;
+using VariacaoPreco.Core;
 using VariacaoPreco.Core.Entity;
 using VariacaoPreco.Core.Interface;
 using VariacaoPreco.Data;
 
 namespace VariacaoPreco.Integracao
 {
-    public class AtivoService
+    public class AtivoIntegracaoService : IIntegracao
     {
         private readonly IAtivo _ativo;
         private readonly AppDbContext _dbContext;
 
-        public AtivoService(IAtivo ativo, AppDbContext dbContext)
+        public AtivoIntegracaoService(IAtivo ativo, AppDbContext dbContext)
         {
             _ativo = ativo;
             _dbContext = dbContext;
         }
 
-        public async Task<List<Ativo>> ObterPrecoAtivo()
+        public async Task<List<Ativo>> ObterPrecoAtivo(string simbolo)
         {
             try
             {
                 using var httpClient = new HttpClient();
 
-                string apiUrl = $"https://query2.finance.yahoo.com/v8/finance/chart/PETR4.SA";
+                string apiUrl = $"https://query2.finance.yahoo.com/v8/finance/chart/" + simbolo;
                 HttpResponseMessage response = await httpClient.GetAsync(apiUrl);
 
                 if (response.IsSuccessStatusCode)
@@ -57,8 +58,8 @@ namespace VariacaoPreco.Integracao
 
                 foreach (var result in chartData.chart.result)
                 {
-                    Ativo teste = ValidaAtivo(result.timestamp.FirstOrDefault());
-                    if (teste == null)
+                    Ativo hasAtivo = ValidaAtivo(result.timestamp.FirstOrDefault(), result.meta.symbol);
+                    if (hasAtivo == null)
                     {
                         for (int i = 0; i < result.timestamp.Count; i++)
                         {
@@ -70,6 +71,7 @@ namespace VariacaoPreco.Integracao
                             {
                                 Ativo ativo = new Ativo
                                 {
+                                    Simbolo = result.meta.symbol,
                                     Dia = DateTimeOffset.FromUnixTimeSeconds(timestamp).DateTime.Day,
                                     Data_stamp = DateTimeOffset.FromUnixTimeSeconds(timestamp).DateTime,
                                     Valor_fechamento = quote.close[i],
@@ -95,12 +97,12 @@ namespace VariacaoPreco.Integracao
             
         }
 
-        public Ativo ValidaAtivo(int date)
+        public Ativo ValidaAtivo(int date, string simbolo)
         {
             try
             {
                 DateTime stamp = DateTimeOffset.FromUnixTimeSeconds(date).Date;
-                return _dbContext.Ativos.FirstOrDefault(e => e.Data_stamp.Date == stamp);
+                return _dbContext.Ativos.FirstOrDefault(e => e.Data_stamp.Date == stamp && e.Simbolo == simbolo);
             }
             catch (Exception ex)
             {

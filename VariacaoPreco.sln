@@ -16,7 +16,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VariacaoPreco.Data", "Varia
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VariacaoPreco.Core", "VariacaoPreco.Core\VariacaoPreco.Core.csproj", "{B760B4DE-3F09-4C8F-83AF-A884ABA55733}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VariacaoPreco.Integracao", "VariacaoPreco.Integracao\VariacaoPreco.Integracao.csproj", "{129B1264-EF0B-4E00-9208-038AA4816B05}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VariacaoPreco.Tests", "VariacaoPreco.Tests\VariacaoPreco.Tests.csproj", "{C2204BAB-CF0B-46B9-B75C-9880188953B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,10 +40,10 @@ Global
 		{B760B4DE-3F09-4C8F-83AF-A884ABA55733}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B760B4DE-3F09-4C8F-83AF-A884ABA55733}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B760B4DE-3F09-4C8F-83AF-A884ABA55733}.Release|Any CPU.Build.0 = Release|Any CPU
-		{129B1264-EF0B-4E00-9208-038AA4816B05}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{129B1264-EF0B-4E00-9208-038AA4816B05}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{129B1264-EF0B-4E00-9208-038AA4816B05}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{129B1264-EF0B-4E00-9208-038AA4816B05}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C2204BAB-CF0B-46B9-B75C-9880188953B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C2204BAB-CF0B-46B9-B75C-9880188953B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C2204BAB-CF0B-46B9-B75C-9880188953B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C2204BAB-CF0B-46B9-B75C-9880188953B9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
