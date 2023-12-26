@@ -7,5 +7,7 @@ namespace VariacaoPreco.Core.Interface
         void Add(Ativo ativo);
         Ativo GetAtivoByDate(DateTime stamp);
         List<Variacao> GetAll();
+        List<Ativo> ObterAtivosUltimos30Pregoes();
+
     }
 }

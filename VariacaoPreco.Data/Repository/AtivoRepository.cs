@@ -40,5 +40,15 @@ namespace VariacaoPreco.Data.Repository
             _dbContext.Entry(ativo).GetDatabaseValues();
             return ativo.ID_ativo;
         }
+
+        public List<Ativo> ObterAtivosUltimos30Pregoes()
+        {
+            var ativos = _dbContext.Ativos
+                .OrderByDescending(a => a.Data_stamp)  // Ordenando os ativos pela data em ordem decrescente
+                .Take(30)  // Limitando o resultado aos últimos 30 registros
+                .ToList();
+
+            return ativos;
+        }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using VariacaoPreco.API.Models;
 using VariacaoPreco.Core.Entity;
 using VariacaoPreco.Core.Service;
 //using VariacaoPreco.Data.Repository;
@@ -18,26 +17,34 @@ namespace VariacaoPreco.API.Controllers
             _ativoService = ativoService;
         }
 
-        //[HttpGet("precos-ativos")]
-        //public ActionResult<List<Ativo>> ObterPrecoAtivo()
-        //{
-        //    var ativos = _ativoService.ObterPrecoAtivo();
+        [HttpGet("precos-ativos")]
+        public ActionResult ObterVariacaoPreco()
+        {
+            try
+            {
+                var variacao = _ativoService.CalcularVariacaoPreco();
+                return Ok(variacao);
 
-        //    return Ok(ativos);
-        //}
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Erro ao calcular a variação do preço: {ex.Message}");
+            }
+        }
 
-        //[HttpGet("quantidade-pedidos-por-cliente")]
-        //public ActionResult<List<PedidoInfo>> ObterQuantidadePedidosPorCliente()
-        //{
-        //    var quantidadePedidos = _pedidoService.QuantidadePedidos();
-        //    return Ok(quantidadePedidos);
-        //}
+        [HttpGet("variacao-preco-ativos")]
+        public ActionResult ObterQuantidadePedidosPorCliente()
+        {
+            try
+            {
+                var precos = _ativoService.CalcularVariacoes();
+                return Ok(precos);
+            }
+            catch (Exception ex)
+            {
 
-        //[HttpGet("pedidos-por-cliente")]
-        //public ActionResult<List<PedidoInfo>> PedidosPorCliente()
-        //{
-        //    var pedidosPorCliente = _pedidoService.PedidosPorCliente();
-        //    return Ok(pedidosPorCliente);
-        //}
+                return StatusCode(500, $"Erro na consulta da variação de preços ativos: {ex.Message}");
+            }
+        }
     }
 }
