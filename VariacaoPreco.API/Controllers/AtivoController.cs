@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using VariacaoPreco.API.Models;
+using VariacaoPreco.Core.Entity;
 using VariacaoPreco.Core.Service;
 //using VariacaoPreco.Data.Repository;
 
@@ -7,25 +8,23 @@ namespace VariacaoPreco.API.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class PedidoController : ControllerBase
+    public class AtivoController : ControllerBase
     {
-        //private readonly IPedidoRepository _pedidoRepository;
-        private readonly PedidoService _pedidoService;
+        private readonly AtivoService _ativoService;
 
 
-        public PedidoController(PedidoService pedidoService)
+        public AtivoController(AtivoService ativoService)
         {
-            //_pedidoRepository = pedidoRepository;
-            _pedidoService = pedidoService;
+            _ativoService = ativoService;
         }
 
-        //[HttpGet("valor-total")]
-        //public ActionResult<List<PedidoInfo>> ObterValorTotal()
+        //[HttpGet("precos-ativos")]
+        //public ActionResult<List<Ativo>> ObterPrecoAtivo()
         //{
-        //    var pedidosComValorTotal = _pedidoService.ObterValorTotalPedido();
-        //    return Ok(pedidosComValorTotal);
-        //}
+        //    var ativos = _ativoService.ObterPrecoAtivo();
 
+        //    return Ok(ativos);
+        //}
 
         //[HttpGet("quantidade-pedidos-por-cliente")]
         //public ActionResult<List<PedidoInfo>> ObterQuantidadePedidosPorCliente()

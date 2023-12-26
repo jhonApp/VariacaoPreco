@@ -11,7 +11,7 @@ namespace VariacaoPreco.Core.Entity
         public int ID_ativo { get; set; }
         public int Dia { get; set; }
         public DateTime Data { get; set; }
-        public decimal Valor { get; set; }
+        public double Valor { get; set; }
         public string VariacaoDiaAnterior { get; set; }
         public string VariacaoPrimeiraData { get; set; }
 

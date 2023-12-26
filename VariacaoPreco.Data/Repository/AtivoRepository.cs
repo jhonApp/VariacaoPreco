@@ -8,17 +8,31 @@ namespace VariacaoPreco.Data.Repository
     {
         private readonly AppDbContext _dbContext;
         private readonly DbSet<Ativo> _ativos;
+        private readonly DbSet<Variacao> _variacaos;
 
         public AtivoRepository(AppDbContext dbContext)
         {
             _dbContext = dbContext;
             _ativos = dbContext.Set<Ativo>();
+            _variacaos = dbContext.Set<Variacao>();
         }
 
-        public void AdicionarAtivo(Ativo ativo)
+        public void Add(Ativo ativo)
         {
             _ativos.Add(ativo);
             _dbContext.SaveChanges();
+        }
+
+        public List<Variacao> GetAll()
+        {
+            return _variacaos
+                .Include(e => e.Ativo)
+                .ToList();
+        }
+
+        public Ativo GetAtivoByDate(DateTime stamp)
+        {
+            return _ativos.FirstOrDefault(e => e.Data_stamp.Date == stamp.Date);
         }
 
         public int GetAtivoID(Ativo ativo)

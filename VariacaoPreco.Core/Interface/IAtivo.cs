@@ -4,6 +4,8 @@ namespace VariacaoPreco.Core.Interface
 {
     public interface IAtivo
     {
-        void AdicionarAtivo(Ativo ativo);
+        void Add(Ativo ativo);
+        Ativo GetAtivoByDate(DateTime stamp);
+        List<Variacao> GetAll();
     }
 }
