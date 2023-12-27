@@ -19,6 +19,12 @@ services:
       context: .
       dockerfile: VariacaoPreco.Core/Dockerfile
 
+  variacaopreco.tests:
+    image: ${DOCKER_REGISTRY-}variacaoprecotests
+    build:
+      context: .
+      dockerfile: VariacaoPreco.Tests/Dockerfile
+
   jenkins:
     image: jenkins/jenkins:lts
     ports:
